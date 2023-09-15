@@ -1,22 +1,20 @@
-const App = () => {
-    let [buttonText, setbuttonText] = React.useState('Clicl me please');
-    
-    const onButtonClick = () => {
-        setbuttonText('Hello from react!!!');
-    };
+const App = ({ initialButtonText }) => {
+  const [buttonText, setbuttonText] = React.useState(initialButtonText);
+  const [buttonColor, setbuttonColor] = React.useState('');
 
-    return (
-        <div className="app">
-            {/*
-                - в JSX классы подключаются при помощи className
-                - внутри JSX используются двойные кавычки
-                - при добавлении JS внутри JSX необходимо использовать {}
-            */}
-            <button onClick={onButtonClick}>{buttonText}</button>
-        </div>
-    );
+  const onButtonClick = () => {
+    setbuttonText('Hello from React!!!');
+    setbuttonColor('green-btn');
+  };
+  return (
+    <div className="app">
+      <button className={buttonColor} onClick={onButtonClick}>
+        {buttonText}
+      </button>
+    </div>
+  );
 };
 
 const container = document.getElementById('app');
 const root = ReactDOM.createRoot(container);
-root.render(<App />);
+root.render(<App initialButtonText="Click me" />);
